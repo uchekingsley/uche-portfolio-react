@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { MapPin, Mail, Phone, Send, CheckCircle } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
@@ -64,7 +65,13 @@ const Contact = () => {
 
   return (
     <section id="contact" className="mb-20 pt-20 relative z-10">
-      <div className="bg-surface rounded-3xl p-8 md:p-12 border border-gray-800 relative overflow-hidden">
+      <motion.div 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="bg-surface rounded-3xl p-8 md:p-12 border border-gray-800 relative overflow-hidden"
+      >
         {/* Decorative elements */}
         <div className="absolute -top-20 -right-20 w-64 h-64 bg-primary/10 rounded-full blur-[80px]"></div>
         
@@ -168,7 +175,7 @@ const Contact = () => {
             )}
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };

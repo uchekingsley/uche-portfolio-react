@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Layers, Sparkles, Database, GitMerge, Waves } from 'lucide-react';
 
 const Skills = () => {
@@ -105,9 +106,15 @@ const Skills = () => {
 
   return (
     <section className="mb-32 overflow-hidden relative z-10">
-      <div className="text-center mb-10">
+      <motion.div 
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="text-center mb-10"
+      >
         <h2 className="text-2xl font-bold">What I Use to Build Stuff 🛠️</h2>
-      </div>
+      </motion.div>
       
       {/* Marquee Wrapper */}
       <div className="w-full relative flex overflow-hidden">

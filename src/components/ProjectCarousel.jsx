@@ -19,7 +19,7 @@ const ProjectCarousel = ({ images, title, autoPlay = false, fillSpace = false })
   };
 
   return (
-    <div className="relative w-full h-full overflow-hidden rounded-t-2xl group cursor-pointer bg-[#0a0b10] border-b border-gray-800/50">
+    <div className="relative w-full h-full overflow-hidden rounded-t-2xl group cursor-pointer bg-[#0a0b10] border-b border-gray-800/50 flex items-center justify-center">
       {/* Subtle grid background overlay (only when not filled) */}
       {!fillSpace && (
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px] z-0"></div>
@@ -27,7 +27,7 @@ const ProjectCarousel = ({ images, title, autoPlay = false, fillSpace = false })
       
       {/* Images Container */}
       <div 
-        className="flex transition-transform duration-700 ease-in-out h-full z-10 relative"
+        className="flex transition-transform duration-700 ease-in-out h-full w-full z-10 relative"
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {images.map((src, index) => (
@@ -56,20 +56,41 @@ const ProjectCarousel = ({ images, title, autoPlay = false, fillSpace = false })
                   <div className="w-1/3 h-full bg-primary/40"></div>
                 </div>
               </div>
-            ) : (
-              // Real mockup image
+            ) : fillSpace ? (
+              // Full widescreen image (Wisemonie project requirement)
               <img 
                 src={src} 
                 alt={`${title} screenshot ${index + 1}`} 
-                className={`transition-transform duration-500 ${
-                  fillSpace 
-                    ? 'w-full h-full object-contain group-hover:scale-105' 
-                    : 'w-auto h-full max-h-56 object-contain rounded-xl shadow-[0_15px_35px_rgba(0,0,0,0.6)] group-hover:scale-105'
-                }`}
+                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                 onError={(e) => {
                   e.target.style.display = 'none';
                 }}
               />
+            ) : (
+              // Real mockup inside a CSS smartphone bezel
+              <div className="relative mx-auto border-[6px] border-gray-900 bg-gray-900 rounded-[2.2rem] shadow-[0_20px_40px_rgba(0,0,0,0.6)] overflow-hidden w-[160px] h-[280px] md:w-[170px] md:h-[300px] flex items-center justify-center group-hover:scale-[1.03] transition-transform duration-500 z-10">
+                {/* Speaker & notch */}
+                <div className="absolute top-0 inset-x-0 h-4 bg-gray-900 z-30 rounded-t-xl flex justify-center items-center">
+                  <div className="w-10 h-3 bg-black rounded-b-lg flex items-center justify-center">
+                    <div className="w-4 h-0.5 bg-gray-800 rounded-full"></div>
+                  </div>
+                </div>
+                {/* Screen Content */}
+                <div className="w-full h-full pt-3 pb-1.5 px-0.5 bg-black rounded-[1.8rem] overflow-hidden flex items-center justify-center">
+                  <img 
+                    src={src} 
+                    alt={`${title} screenshot ${index + 1}`} 
+                    className="w-full h-full object-cover rounded-[1.6rem]"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                    }}
+                  />
+                </div>
+                {/* Home indicator bar */}
+                <div className="absolute bottom-1 inset-x-0 h-1 flex justify-center z-30">
+                  <div className="w-12 h-0.5 bg-gray-700 rounded-full"></div>
+                </div>
+              </div>
             )}
           </div>
         ))}

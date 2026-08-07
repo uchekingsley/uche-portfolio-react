@@ -96,7 +96,6 @@ const Projects = () => {
           return (
             <motion.div 
               key={i}
-              // Slide in from left/right on entry, lift and glow on hover
               variants={{
                 hidden: { opacity: 0, x: i % 2 === 0 ? -60 : 60, y: 30 },
                 show: { 
@@ -107,8 +106,8 @@ const Projects = () => {
                 }
               }}
               whileHover={{ 
-                y: -10, 
-                scale: 1.015,
+                y: -8,
+                scale: 1.01,
                 borderColor: "rgba(59, 130, 246, 0.4)",
                 boxShadow: "0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(59, 130, 246, 0.15)"
               }}
