@@ -8,6 +8,11 @@ import wisemonie1 from '../assets/images/wisemonie1.png';
 import wisemonie2 from '../assets/images/wisemonie2.png';
 import wisemonie3 from '../assets/images/wisemonie3.png';
 
+import frontletHomescreen from '../assets/images/frontlet_homescreen.png';
+import frontletLibrary from '../assets/images/frontlet_library.png';
+import superstoreMain from '../assets/images/superstore_main.png';
+import superstoreDriver from '../assets/images/superstore_driver.png';
+
 const Projects = () => {
   const projectsList = [
     {
@@ -16,6 +21,7 @@ const Projects = () => {
       tags: ['Flutter', 'Dart', 'Security', 'Firebase'],
       images: [wisemonie1, wisemonie2, wisemonie3],
       autoPlay: true,
+      fillSpace: true,
       gradient: "from-blue-900/50 to-purple-900/50",
       buttonText: "Play Store",
       buttonIcon: ExternalLink,
@@ -26,10 +32,9 @@ const Projects = () => {
       isDev: true,
       desc: "Multi-purpose church operations app utilizing AI and offline-first data storage. Includes web scraping, grading tools, OAuth 2.0 authentication, and a store module.",
       tags: ['Flutter', 'OAuth 2.0', 'Offline-First', 'AI'],
-      images: [
-        "https://raw.githubusercontent.com/uchekingsley/My-Portfolio/main/images/frontlet.png"
-      ],
-      autoPlay: false,
+      images: [frontletHomescreen, frontletLibrary],
+      autoPlay: true,
+      fillSpace: true,
       gradient: "from-pink-900/50 to-orange-900/50",
       buttonText: "GitHub",
       buttonIcon: Github,
@@ -39,10 +44,9 @@ const Projects = () => {
       title: "Superstore Main App",
       desc: "Modern e-commerce & delivery app offering users a seamless shopping experience from product discovery and cart management to real-time order tracking and secure digital receipt generation.",
       tags: ['Flutter', 'Riverpod', 'E-Commerce', 'Order Tracking'],
-      images: [
-        "https://placehold.co/300x600/151722/e83e8c?text=Superstore+Main+App"
-      ],
+      images: [superstoreMain],
       autoPlay: false,
+      fillSpace: true,
       gradient: "from-green-900/50 to-teal-900/50",
       buttonText: "GitHub",
       buttonIcon: Github,
@@ -52,10 +56,9 @@ const Projects = () => {
       title: "Superstore Driver",
       desc: "Cross-platform app for delivery partners to manage operations, track daily earnings, navigate active orders, and handle secure financial payouts in real-time.",
       tags: ['Flutter', 'Riverpod', 'Maps API', 'Real-time'],
-      images: [
-        "https://placehold.co/300x600/151722/e83e8c?text=Superstore+Driver"
-      ],
+      images: [superstoreDriver],
       autoPlay: false,
+      fillSpace: true,
       gradient: "from-yellow-900/50 to-red-900/50",
       buttonText: "GitHub",
       buttonIcon: Github,
@@ -112,11 +115,12 @@ const Projects = () => {
               transition={{ duration: 0.3, ease: "easeOut" }}
               className="bg-surface rounded-2xl overflow-hidden border border-gray-800 transition-all group flex flex-col"
             >
-              <div className="h-64 relative overflow-hidden">
+              <div className="h-72 md:h-80 relative overflow-hidden">
                 <ProjectCarousel 
                   title={project.title} 
                   autoPlay={project.autoPlay}
                   images={project.images} 
+                  fillSpace={project.fillSpace}
                 />
               </div>
               <div className="p-8 flex-1 flex flex-col z-10 bg-surface">

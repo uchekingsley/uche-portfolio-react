@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Smartphone, Sparkles } from 'lucide-react';
 
-const ProjectCarousel = ({ images, title, autoPlay = false }) => {
+const ProjectCarousel = ({ images, title, autoPlay = false, fillSpace = false }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -20,8 +20,10 @@ const ProjectCarousel = ({ images, title, autoPlay = false }) => {
 
   return (
     <div className="relative w-full h-full overflow-hidden rounded-t-2xl group cursor-pointer bg-[#0a0b10] border-b border-gray-800/50">
-      {/* Subtle grid background overlay just for the image header area */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px] z-0"></div>
+      {/* Subtle grid background overlay (only when not filled) */}
+      {!fillSpace && (
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px] z-0"></div>
+      )}
       
       {/* Images Container */}
       <div 
@@ -29,7 +31,12 @@ const ProjectCarousel = ({ images, title, autoPlay = false }) => {
         style={{ transform: `translateX(-${currentIndex * 100}%)` }}
       >
         {images.map((src, index) => (
-          <div key={index} className="min-w-full h-full p-4 flex items-center justify-center relative">
+          <div 
+            key={index} 
+            className={`min-w-full h-full flex items-center justify-center relative ${
+              fillSpace ? 'p-0' : 'p-4'
+            }`}
+          >
             {isPlaceholder(src) ? (
               // Premium styled placeholder mockup
               <div className="w-40 h-full max-h-56 bg-surface border border-gray-800 rounded-2xl p-4 flex flex-col justify-between shadow-2xl relative overflow-hidden group-hover:scale-105 transition-transform duration-500">
@@ -54,7 +61,11 @@ const ProjectCarousel = ({ images, title, autoPlay = false }) => {
               <img 
                 src={src} 
                 alt={`${title} screenshot ${index + 1}`} 
-                className="w-auto h-full max-h-56 object-contain rounded-xl shadow-[0_15px_35px_rgba(0,0,0,0.6)] group-hover:scale-105 transition-transform duration-500" 
+                className={`transition-transform duration-500 ${
+                  fillSpace 
+                    ? 'w-full h-full object-contain group-hover:scale-105' 
+                    : 'w-auto h-full max-h-56 object-contain rounded-xl shadow-[0_15px_35px_rgba(0,0,0,0.6)] group-hover:scale-105'
+                }`}
                 onError={(e) => {
                   e.target.style.display = 'none';
                 }}
