@@ -25,10 +25,10 @@ function App() {
         <Navbar />
         <main className="max-w-6xl mx-auto px-6">
           <Hero />
+          <Projects />
           <Experience />
           <Services />
           <Skills />
-          <Projects />
           <Contact />
         </main>
         <Footer />

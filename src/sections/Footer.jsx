@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="border-t border-gray-800 bg-surface/30 mt-20 relative z-10">
       <div className="max-w-6xl mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="text-xl font-bold italic tracking-tighter text-gray-300">
-          Ubaka<span className="text-primary">.</span>Uche
+          Uche<span className="text-primary">.Dev</span>
         </div>
         
         <div className="text-center md:text-left text-sm text-gray-500">
@@ -24,7 +24,7 @@ const Footer = () => {
             <Github size={20} />
           </a>
           <a 
-            href="https://linkedin.com/in/uche-ubaka" 
+            href="https://www.linkedin.com/in/uche-ubaka-30a95b152" 
             target="_blank" 
             rel="noopener noreferrer"
             className="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-gray-400 hover:text-blue-400 hover:bg-gray-700 transition-colors border border-gray-800"

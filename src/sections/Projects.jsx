@@ -4,14 +4,14 @@ import { ExternalLink, Github } from 'lucide-react';
 import ProjectCarousel from '../components/ProjectCarousel';
 
 // Import local images directly for reliable routing in Vite
-import wisemonie1 from '../assets/images/wisemonie1.png';
-import wisemonie2 from '../assets/images/wisemonie2.png';
-import wisemonie3 from '../assets/images/wisemonie3.png';
+import wisemonie1 from '../assets/images/wisemonie1.webp';
+import wisemonie2 from '../assets/images/wisemonie2.webp';
+import wisemonie3 from '../assets/images/wisemonie3.webp';
 
-import frontletHomescreen from '../assets/images/frontlet_homescreen.png';
-import frontletLibrary from '../assets/images/frontlet_library.png';
-import superstoreMain from '../assets/images/superstore_main.png';
-import superstoreDriver from '../assets/images/superstore_driver.png';
+import frontletHomescreen from '../assets/images/frontlet_homescreen.webp';
+import frontletLibrary from '../assets/images/frontlet_library.webp';
+import superstoreMain from '../assets/images/superstore_main.webp';
+import superstoreDriver from '../assets/images/superstore_driver.webp';
 
 const Projects = () => {
   const projectsList = [
@@ -109,8 +109,8 @@ const Projects = () => {
               whileHover={{ 
                 y: -10, 
                 scale: 1.015,
-                borderColor: "rgba(232, 62, 140, 0.4)",
-                boxShadow: "0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(232, 62, 140, 0.15)"
+                borderColor: "rgba(59, 130, 246, 0.4)",
+                boxShadow: "0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(59, 130, 246, 0.15)"
               }}
               transition={{ duration: 0.3, ease: "easeOut" }}
               className="bg-surface rounded-2xl overflow-hidden border border-gray-800 transition-all group flex flex-col"

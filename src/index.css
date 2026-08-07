@@ -3,8 +3,8 @@
 @theme {
   --color-background: #0d0e14;
   --color-surface: #151722;
-  --color-primary: #e83e8c;
-  --color-primaryHover: #d81b60;
+  --color-primary: #3b82f6;
+  --color-primaryHover: #2563eb;
   
   --animate-marquee: marquee 25s linear infinite;
 
@@ -25,12 +25,12 @@ body {
 
 /* Timeline specific glow */
 .timeline-dot {
-  box-shadow: 0 0 10px #e83e8c, 0 0 20px #e83e8c;
+  box-shadow: 0 0 10px #3b82f6, 0 0 20px #3b82f6;
 }
 
 /* Gradient Text */
 .gradient-text {
-  background: linear-gradient(to right, #e83e8c, #a855f7);
+  background: linear-gradient(to right, #3b82f6, #38bdf8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -39,7 +39,7 @@ body {
 .blinking-cursor::after {
   content: '|';
   animation: blink 1s step-end infinite;
-  color: #e83e8c;
+  color: #3b82f6;
 }
 
 @keyframes blink {

@@ -1,7 +1,67 @@
-import React from 'react';
-import { MapPin, Mail, Phone, Send } from 'lucide-react';
+import React, { useState } from 'react';
+import { MapPin, Mail, Phone, Send, CheckCircle } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 const Contact = () => {
+  const [submitting, setSubmitting] = useState(false);
+  const [succeeded, setSucceeded] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setErrorMessage('');
+
+    const form = e.target;
+    const formData = new FormData(form);
+
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const subject = formData.get('subject');
+    const message = formData.get('message');
+
+    try {
+      // 1. Submit to Formspree
+      const formspreeResponse = await fetch("https://formspree.io/f/mljrgerj", {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      // 2. Submit to Supabase (if configured)
+      if (supabase) {
+        const { error } = await supabase
+          .from('messages')
+          .insert([{ name, email, subject, message }]);
+        
+        if (error) {
+          console.error('Error inserting into Supabase:', error.message);
+        } else {
+          console.log('Successfully saved message to Supabase!');
+        }
+      }
+
+      if (formspreeResponse.ok) {
+        setSucceeded(true);
+        form.reset();
+      } else {
+        const data = await formspreeResponse.json();
+        if (data.errors) {
+          setErrorMessage(data.errors.map(err => err.message).join(', '));
+        } else {
+          setErrorMessage('There was a problem submitting your form.');
+        }
+      }
+    } catch (err) {
+      console.error('Submission error:', err);
+      setErrorMessage('Could not connect to the form server. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
     <section id="contact" className="mb-20 pt-20 relative z-10">
       <div className="bg-surface rounded-3xl p-8 md:p-12 border border-gray-800 relative overflow-hidden">
@@ -13,8 +73,8 @@ const Contact = () => {
             <h2 className="text-4xl font-bold mb-4">
               Have a <span className="text-primary">Project</span> in your mind? Let's get to work ⚡
             </h2>
-            <p className="text-gray-400 mb-8">
-              I am actively seeking new opportunities and my inbox is always open. Whether you have a question or just want to say hi, I will definitely get back to you.
+            <p className="text-gray-400 mb-8 leading-relaxed">
+              Looking for a mobile engineer to bring your ideas to life? I'm always open to new opportunities, contract projects, or technical discussions. Leave a message below and let's build something great together.
             </p>
             
             <div className="space-y-6">
@@ -68,30 +128,45 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Contact Form UI Mock */}
-          <form className="bg-background/50 p-6 rounded-2xl border border-gray-800" onSubmit={(e) => e.preventDefault()}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-              <div>
-                <label className="text-xs text-gray-400 mb-1 block">Your Name</label>
-                <input type="text" className="w-full bg-surface border border-gray-700 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-primary transition-colors text-white" placeholder="John Doe" />
+          {/* Contact Form or Success State */}
+          <div className="bg-background/50 p-6 rounded-2xl border border-gray-800 flex items-center justify-center min-h-[350px]">
+            {succeeded ? (
+              <div className="text-center p-8 flex flex-col items-center gap-4 animate-[fadeIn_0.5s_ease-out]">
+                <CheckCircle size={56} className="text-green-500 animate-[bounce_1s_infinite_alternate]" />
+                <h3 className="text-2xl font-bold text-white">Thank you!</h3>
+                <p className="text-gray-400 text-sm">Your message has been sent successfully. I will get back to you shortly.</p>
               </div>
-              <div>
-                <label className="text-xs text-gray-400 mb-1 block">Email Address</label>
-                <input type="email" className="w-full bg-surface border border-gray-700 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-primary transition-colors text-white" placeholder="john@example.com" />
-              </div>
-            </div>
-            <div className="mb-4">
-              <label className="text-xs text-gray-400 mb-1 block">Subject</label>
-              <input type="text" className="w-full bg-surface border border-gray-700 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-primary transition-colors text-white" placeholder="Project details..." />
-            </div>
-            <div className="mb-6">
-              <label className="text-xs text-gray-400 mb-1 block">Your Message</label>
-              <textarea rows="4" className="w-full bg-surface border border-gray-700 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-primary transition-colors resize-none text-white" placeholder="Hello, I want to build..."></textarea>
-            </div>
-            <button className="w-full bg-primary text-white font-semibold py-3 rounded-lg hover:bg-primaryHover transition-colors flex items-center justify-center gap-2">
-              <Send size={18} /> Send Message
-            </button>
-          </form>
+            ) : (
+              <form onSubmit={handleSubmit} className="w-full">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <label htmlFor="name" className="text-xs text-gray-400 mb-1 block">Your Name</label>
+                    <input id="name" type="text" name="name" required className="w-full bg-surface border border-gray-700 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-primary transition-colors text-white" placeholder="John Doe" />
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="text-xs text-gray-400 mb-1 block">Email Address</label>
+                    <input id="email" type="email" name="email" required className="w-full bg-surface border border-gray-700 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-primary transition-colors text-white" placeholder="john@example.com" />
+                  </div>
+                </div>
+                <div className="mb-4">
+                  <label htmlFor="subject" className="text-xs text-gray-400 mb-1 block">Subject</label>
+                  <input id="subject" type="text" name="subject" required className="w-full bg-surface border border-gray-700 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-primary transition-colors text-white" placeholder="Project details..." />
+                </div>
+                <div className="mb-6">
+                  <label htmlFor="message" className="text-xs text-gray-400 mb-1 block">Your Message</label>
+                  <textarea id="message" name="message" rows="4" required className="w-full bg-surface border border-gray-700 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-primary transition-colors resize-none text-white" placeholder="Hello, I want to build..."></textarea>
+                </div>
+                
+                {errorMessage && (
+                  <p className="text-xs text-red-500 mb-4 text-center">{errorMessage}</p>
+                )}
+
+                <button type="submit" disabled={submitting} className="w-full bg-primary text-white font-semibold py-3 rounded-lg hover:bg-primaryHover transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed">
+                  <Send size={18} /> {submitting ? 'Sending...' : 'Send Message'}
+                </button>
+              </form>
+            )}
+          </div>
         </div>
       </div>
     </section>

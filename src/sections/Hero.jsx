@@ -37,7 +37,7 @@ const Hero = () => {
   const animatedRole = useTypewriter(roles);
 
   return (
-    <section id="about" className="flex flex-col items-center justify-center text-center mt-20 mb-32 pt-10 relative z-10">
+    <section id="about" className="flex flex-col items-center justify-center text-center mt-2 mb-32 pt-8 relative z-10">
       <h2 className="text-lg md:text-xl text-gray-400 mb-4 flex items-center gap-2">
         Hey <span className="text-2xl animate-bounce">👋</span> I'm
       </h2>
