@@ -37,7 +37,7 @@ const Hero = () => {
   const animatedRole = useTypewriter(roles);
 
   return (
-    <section id="about" className="flex flex-col items-center justify-center text-center mt-2 mb-32 pt-8 relative z-10">
+    <section id="about" className="flex flex-col items-center justify-center text-center mt-8 mb-32 pt-20 relative z-10">
       <h2 className="text-lg md:text-xl text-gray-400 mb-4 flex items-center gap-2">
         Hey <span className="text-2xl animate-bounce">👋</span> I'm
       </h2>
@@ -48,10 +48,6 @@ const Hero = () => {
       <p className="text-xl md:text-2xl font-medium mt-2 mb-6 h-8 flex items-center justify-center">
         A passionate <span className="gradient-text ml-2 font-bold blinking-cursor">{animatedRole}</span>
       </p>
-      
-      <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border-2 border-primary/50 overflow-hidden mb-6 flex items-center justify-center bg-surface shadow-[0_0_30px_rgba(232,62,140,0.2)]">
-        <span className="text-5xl font-bold text-gray-600">UK</span>
-      </div>
 
       <p className="max-w-2xl text-gray-400 leading-relaxed text-sm md:text-base mb-8">
         Flutter mobile developer with 2+ years of experience building and shipping cross-platform applications. 
