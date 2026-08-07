@@ -53,6 +53,10 @@ const Skills = () => {
       )
     },
     { 
+      name: "Supabase", 
+      svg: <img src="https://www.svgrepo.com/show/354413/supabase.svg" alt="Supabase" className="w-6 h-6" /> 
+    },
+    { 
       name: "Git", 
       svg: (
         <svg viewBox="0 0 128 128" className="w-6 h-6">
