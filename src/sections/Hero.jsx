@@ -54,9 +54,14 @@ const Hero = () => {
         Specialized in strong UI/UX detail, pixel-accurate implementation, and secure mobile development practices.
       </p>
 
-      <button className="flex items-center gap-2 px-8 py-3 bg-primary text-white rounded-full font-semibold hover:bg-primaryHover transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(232,62,140,0.4)]">
+      <a 
+        href={import.meta.env.VITE_RESUME_URL || "#"} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="flex items-center gap-2 px-8 py-3 bg-primary text-white rounded-full font-semibold hover:bg-primaryHover transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(59,130,246,0.3)] text-sm"
+      >
         Resume <Download size={18} />
-      </button>
+      </a>
     </section>
   );
 };
