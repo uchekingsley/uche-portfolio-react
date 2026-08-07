@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #0d0e14;
+  --color-surface: #151722;
+  --color-primary: #e83e8c;
+  --color-primaryHover: #d81b60;
+  
+  --animate-marquee: marquee 25s linear infinite;
+
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-100%); }
+  }
+}
+
+body {
+  background-color: #0d0e14;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Timeline specific glow */
+.timeline-dot {
+  box-shadow: 0 0 10px #e83e8c, 0 0 20px #e83e8c;
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(to right, #e83e8c, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Typing cursor */
+.blinking-cursor::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+  color: #e83e8c;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Ambient animated background shapes */
+.ambient-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.3;
+  animation: float 25s infinite ease-in-out alternate;
+}
+
+.shape-1 {
+  width: 600px;
+  height: 600px;
+  background: rgba(30, 58, 138, 0.4); /* Deep Blue */
+  top: -10%;
+  left: -10%;
+  animation-delay: 0s;
+}
+
+.shape-2 {
+  width: 700px;
+  height: 700px;
+  background: rgba(88, 28, 135, 0.2); /* Deep Purple */
+  bottom: -20%;
+  right: -10%;
+  animation-delay: -5s;
+}
+
+/* Animated grid lines overlay */
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(circle at center, black, transparent 80%);
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(100px, 50px) scale(1.1); }
+  100% { transform: translate(-50px, -80px) scale(0.9); }
+}
+
+@keyframes gridMove {
+  0% { background-position: 0px 0px; }
+  100% { background-position: 50px 50px; }
+}
