@@ -50,7 +50,7 @@ const Hero = () => {
       </p>
 
       <p className="max-w-2xl text-gray-400 leading-relaxed text-sm md:text-base mb-8">
-        Flutter mobile developer with 2+ years of experience building and shipping cross-platform applications. 
+        Flutter and React Native mobile developer with 2+ years of experience building and shipping cross-platform applications. 
         Specialized in strong UI/UX detail, pixel-accurate implementation, and secure mobile development practices.
       </p>
 

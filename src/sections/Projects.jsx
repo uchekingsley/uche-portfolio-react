@@ -17,7 +17,7 @@ const Projects = () => {
   const projectsList = [
     {
       title: "Wisemonie Fintech App",
-      desc: "Production fintech application published on the Play Store. Features AI-powered tools, secure local storage, offline data handling, push notifications, and analytics.",
+      desc: "WiseMonie is a comprehensive personal finance app built with Flutter that empowers users to manage budgets, track savings goals, and handle everyday transactions like money transfers and utility payments all in one place.",
       tags: ['Flutter', 'Dart', 'Security', 'Firebase'],
       images: [wisemonie1, wisemonie2, wisemonie3],
       autoPlay: true,
@@ -25,7 +25,7 @@ const Projects = () => {
       gradient: "from-blue-900/50 to-purple-900/50",
       buttonText: "Play Store",
       buttonIcon: ExternalLink,
-      link: "https://play.google.com" // You can update this to the real Play Store link
+      link: "https://play.google.com/store/apps/details?id=com.wisemonie" // You can update this to the real Play Store link
     },
     {
       title: "Frontlet Ops",
