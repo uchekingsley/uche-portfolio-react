@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Download } from 'lucide-react';
+import resumePdf from '../assets/files/Uche_Ubaka_mobile_app_engineer_resume(1).pdf';
 
 // Custom Hook for Typing Effect
 const useTypewriter = (words, typingSpeed = 100, deletingSpeed = 50, delay = 2000) => {
@@ -55,8 +56,10 @@ const Hero = () => {
       </p>
 
       <a 
-        href={import.meta.env.VITE_RESUME_URL ? `${import.meta.env.VITE_RESUME_URL}?download=` : "#"} 
+        href={resumePdf} 
         download="Uche_Ubaka_Mobile_App_Engineer_Resume.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
         className="flex items-center gap-2 px-8 py-3 bg-primary text-white rounded-full font-semibold hover:bg-primaryHover transition-all transform hover:scale-105 shadow-[0_0_20px_rgba(59,130,246,0.3)] text-sm"
       >
         Resume <Download size={18} />
