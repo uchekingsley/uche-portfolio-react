@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Download } from 'lucide-react';
-import resumePdf from '../assets/files/Uche_Ubaka_mobile_app_engineer_resume(1).pdf';
+import resumePdf from '../assets/files/Uche_Ubaka_Resume_flutter.pdf';
 
 // Custom Hook for Typing Effect
 const useTypewriter = (words, typingSpeed = 100, deletingSpeed = 50, delay = 2000) => {
